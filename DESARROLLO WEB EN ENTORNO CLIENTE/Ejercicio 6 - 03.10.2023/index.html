@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concesionario de Coches</title>
+
+    <!-- JavaScript -->
+    <script src="js.js"></script>
+
+</head>
+<body>
+    <h1>Concesionario de Coches</h1>
+    
+    <!-- Botones -->
+    <button id="mostrar">Mostrar Coches</button>
+    <button id="marca">Ordenar por Marca</button>
+    <button id="edad">Ordenar por Edad</button>
+    <button id="color">Ordenar por Color</button><br><br>
+    <button id="vende">Vender Coche</button>
+    <input type="text" id="mat" placeholder="Matrícula">
+    <button id="json">Cargar Coches desde JSON</button>
+    <br><br><br>
+    
+    <!-- Tabla -->
+    <table border="1 px solid black">
+        <thead>
+            <tr>
+                <th>Matrícula</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Puertas</th>
+                <th>Color</th>
+                <th>Fecha Matriculación</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpo">
+            <!-- Aquí se mostrarán los datos de los coches -->
+        </tbody>
+    </table>
+
+    
+</body>
+</html>

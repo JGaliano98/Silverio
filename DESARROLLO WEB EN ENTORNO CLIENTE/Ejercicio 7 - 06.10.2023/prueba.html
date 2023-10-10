@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<style>
+#container {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  background: yellow;
+}
+#animate {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: red;
+}
+#animate.green {
+  background-color: green;
+}
+</style>
+<body>
+
+<p><button onclick="startAnimation()">Comenzar</button></p>
+<p>
+  <button onclick="stopAnimation()">PARAR</button>
+  <label for="speedSelector">Velocidad:</label>
+  <select id="speedSelector" onchange="changeSpeed()">
+    <option value="1">Rápido</option>
+    <option value="5">Normal</option>
+    <option value="10">Lento</option>
+  </select>
+</p>
+
+<div id ="container">
+  <div id ="animate"></div>
+</div>
+
+<script>
+let animationInterval = null;
+let movingDown = true;
+let speed = 5; // Velocidad normal por defecto
+
+function startAnimation() {
+  const elem = document.getElementById("animate");
+  if (animationInterval) {
+    clearInterval(animationInterval);
+    animationInterval = null;
+  } else {
+    animationInterval = setInterval(frame, speed);
+  }
+
+  function frame() {
+    if (movingDown) {
+      if (parseInt(elem.style.top || 0) >= 350) {
+        movingDown = false;
+        elem.classList.add("green");
+      }
+    } else {
+      if (parseInt(elem.style.top || 0) <= 0) {
+        movingDown = true;
+        elem.classList.remove("green");
+      }
+    }
+
+    if (movingDown) {
+      elem.style.top = (parseInt(elem.style.top || 0) + 1) + "px";
+      elem.style.left = (parseInt(elem.style.left || 0) + 1) + "px";
+    } else {
+      elem.style.top = (parseInt(elem.style.top || 0) - 1) + "px";
+      elem.style.left = (parseInt(elem.style.left || 0) - 1) + "px";
+    }
+  }
+}
+
+function stopAnimation() {
+  clearInterval(animationInterval);
+  animationInterval = null;
+}
+
+function changeSpeed() {
+  const speedSelector = document.getElementById("speedSelector");
+  speed = parseInt(speedSelector.value);
+  if (animationInterval) {
+    clearInterval(animationInterval);
+    animationInterval = setInterval(frame, speed);
+  }
+}
+</script>
+
+</body>
+</html>
